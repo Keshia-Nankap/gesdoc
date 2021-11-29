@@ -1,0 +1,16 @@
+{
+    "name": "udm/twig",
+    "require": {
+        "twig/twig": "2.9.0",
+        "gabordemooij/redbean": "dev-master"
+    },
+    "authors": [{
+        "name": "keshykesh",
+        "email": "kmboudieugop.etudent@fst.udm.cm"
+    }],
+    "autoload": {
+        "psr-4": {
+            "App\\": "modele/"
+        }
+    }
+}
