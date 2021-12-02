@@ -52,5 +52,36 @@ switch($routes){
         }
         echo json_encode($retour);
     break;
+    case'modifierPerson':
+        $idperson = $_POST['idperson'];
+        $email = $_POST['email'];
+        $mdp = $_POST['mdp'];
+        if(empty($idperson)){
+            $retour["error"]="on ne peut modifier une personne inexistante";
+        }else{
+            if(empty($email) && empty($mdp)){
+                $retour["error"]="veuillez modifier au moins un des deux champs";
+            }else{
+                if(!empty($email) && !empty($mdp)){
+                    $updatePersonById = $person->updatePersonById($idperson,$email,$mdp);
+                    $retour["message"]="modifications de email et mot de passe effectuées avec succès";
+                }
+                else if(!empty($email) && empty($mdp)) {
+                    $updatePersonEmail = $person->updatePersonEmail($idperson,$email);
+                    $retour["message"]="modifications d'email effectué avec succès";
+                }
+                else if(!empty($mdp) && empty($email)) {
+                    $updatePersonMdp = $person->updatePersonMdp($idperson,$mdp);
+                    $retour["message"]="modifications de mot de passe effectué avec succès";
+                }
+            }
+            echo json_encode($retour);
+        }
+    break;
+    case'supprimerPerson':
+        $idperson= $_POST['idperson'];
+        $deletePerson = $person->deletePersonById($idperson);
+        echo json_encode($deletePerson);
+    break;
 }
 

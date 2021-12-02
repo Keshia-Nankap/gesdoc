@@ -51,8 +51,21 @@ class Person{
         return $readAllPerson;
     }
 
-    public function updatePersonById($idperson,$mdp){
-        $updatePersonById = R::exec("UPDATE person set mdp='".$mdp."' WHERE id=".$idperson);
+    public function updatePersonById($idperson,$email,$mdp){
+        $updatePersonById = R::exec("UPDATE person set email='".$email."',mdp='".$mdp."' WHERE id=".$idperson);
         return $updatePersonById;
+    }
+    public function updatePersonEmail($idperson,$email){
+        $updatePersonEmail = R::exec("UPDATE person set email='".$email."' WHERE id=".$idperson);
+        return $updatePersonEmail;
+    }
+    public function updatePersonMdp($idperson,$mdp){
+        $updatePersonMdp = R::exec("UPDATE person set mdp='".$mdp."' WHERE id=".$idperson);
+        return $updatePersonMdp;
+    }
+
+    public function deletePersonById($idperson){
+        $deletePersonById =  R::exec('UPDATE person set statut = 0 WHERE id ='.$idperson);
+        return $deletePersonById;
     }
 }
