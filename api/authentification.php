@@ -32,5 +32,25 @@ switch($routes){
         }
         echo json_encode($retour);
     break;
+    case 'signout':
+        session_destroy();
+    break;
+
+    case'signup':
+        if(empty($_POST["nom"]) || empty($_POST["prenom"]) || empty($_POST["sexe"]) || empty($_POST["filiere"])|| empty($_POST["email"]) || empty($_POST["mdp"]))
+        {
+            $retour["error"]="veuillez renseigner tous les champs";
+        }else{
+            $createPerson = $person->createPerson($_POST["nom"],$_POST["prenom"],$_POST["sexe"],$_POST["filiere"],$_POST["email"],$_POST["mdp"]);
+            if(isset($_POST["email"])){
+                if($createPerson> 0){
+                    $retour["message"]=" bonne creation d'une nouvelle personne";
+                }else{
+                    $retour["message"]=" cette personne existe deja";
+                }
+            }  
+        }
+        echo json_encode($retour);
+    break;
 }
 
