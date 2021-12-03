@@ -23,11 +23,14 @@ switch($routes){
             $file_registration_indicator = false;
             for($i=0;$i<$countFiles;$i++){
                 $name = $_FILES["file"]["name"];
-                if(move_uploaded_file($_FILES['file']['tmp_name'], "../documents/$name")) $file_registration_indicator = true;
-                else {
+                if(move_uploaded_file($_FILES['file']['tmp_name'], "../documents/$name"))
+                {
+                    $file_registration_indicator = true;
+                    $createDocument = $document->createDocument($_POST['type'], $name, $_POST['filiere']);
+                }else {
                     $file_registration_indicator = false;
                     break;
-                    $createDocument = $document->createDocument($_POST['type'], $name, $_POST['filiere']);
+                    var_dump($createDocument);
                 }
             }
 
@@ -35,4 +38,13 @@ switch($routes){
         echo json_encode($file_registration_indicator); 
         // echo json_encode($_FILES["file"]["name"]);
     break;
+    case 'valider-document': 
+        $iddocument = $_POST["iddocument"];
+        if(empty($iddocument)){
+            $retour["error"] = "vous devez specifier le document a valider";
+        }else{
+            $validateDocument = $document->validateDocument($iddocument);
+            $retour["message"] = "le document a ete valide avec success";
+        }
+        echo json_encode($retour);
 }

@@ -15,6 +15,7 @@ class Document{
             $document->type = $type;
             $document->theme = $theme;
             $document->filiere = $filiere;
+            $document->statut2 = 0;
             $document->statut = 1;
             return R::store( $document);
         }else{
@@ -42,6 +43,11 @@ class Document{
     public function updateDocumentById ($theme, $iddocument){
         $updateDocumentById = R::exec("UPDATE person set theme='".$theme."' WHERE id=".$iddocument);
         return $updateDocumentById;
+    }
+
+    public function validateDocument ($iddocument){
+        $validateDocument = R::exec("UPDATE document set statut2=1 WHERE id=".$iddocument);
+        return $validateDocument;
     }
 
 }
