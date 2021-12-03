@@ -8,7 +8,7 @@ class Roleperson{
         
     }
 
-    public function createRoleperson($statut,$idperson,$idroles){
+    public function createRoleperson($idperson,$idroles){
         $roleperson = R::dispense( 'roleperson' );
         $roleperson ->statut = 1;
         $person = R::load('person', $idperson);

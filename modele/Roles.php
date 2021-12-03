@@ -8,7 +8,7 @@ class Roles{
         
     }
 
-    public function createRoles($nom, $statut){
+    public function createRoles($nom){
         $selectRoleBynom =  $this->selectRole($nom);
         if(empty($selectRoleBynom)){
         $roles = R::dispense('roles');
