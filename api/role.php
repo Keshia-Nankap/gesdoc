@@ -22,9 +22,6 @@ switch($routes){
             $retour["error"]="veuillez inserer un role";
         }else{
             $createRole = $role->createRoles($_POST['nom']);   
-            $idperson = $_POST['idperson'];
-            var_dump($createRole);
-            $createRolePerson = $roleperson->createRoleperson($idperson,$createRole);
             if(isset($_POST['nom'])){
                 if($createRole > 0){
                     $retour["message"]="bonne creation du role";
@@ -35,4 +32,10 @@ switch($routes){
         }
         echo json_encode($retour);   
     break;
+    case 'roleperson':
+        $idperson = $_POST['idperson'];
+        $idrole = $_POST['idrole'];
+        $createRolePerson = $roleperson->createRoleperson($idperson,$idrole);
+    break;
 }
+
