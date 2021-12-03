@@ -13,7 +13,7 @@ class Infodocpublication{
         $infodocument->datepublication = $datepublication;
         $infodocument->statut = 1;
         $document=R::load('document', $iddocument); 
-        $idroleperson=R::load('roleperson', $idroleperson); 
+        $roleperson=R::load('roleperson', $idroleperson); 
         $document->ownInfodocumentList[]=$infodocument;
         R::store($document);
         $roleperson->ownInfodocumentList[]=$infodocument;

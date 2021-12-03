@@ -50,4 +50,9 @@ class Document{
         return $validateDocument;
     }
 
+    public function deleteDocument ($iddocument){
+        $deleteDocument =  R::exec('UPDATE document set statut = 0 WHERE id ='.$iddocument);
+        return $deleteDocument;
+    }
+
 }

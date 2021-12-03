@@ -47,4 +47,11 @@ switch($routes){
             $retour["message"] = "le document a ete valide avec success";
         }
         echo json_encode($retour);
+    break;
+
+    case 'supprimer-document':
+        $iddocument = $_POST['iddocument'];
+        $deleteDocument = $document->deleteDocument ($iddocument);
+        echo json_encode($deleteDocument);
+    break;
 }
